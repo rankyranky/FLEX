@@ -32,7 +32,4 @@
 
 /// @return the receiver
 - (UIBarButtonItem *)flex_withTintColor:(UIColor *)tint;
-
-- (void)_setWidth:(CGFloat)width;
-
 @end
