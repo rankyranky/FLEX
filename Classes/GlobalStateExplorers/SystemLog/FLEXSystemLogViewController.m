@@ -170,18 +170,18 @@ static BOOL my_os_log_shim_enabled(void *addr) {
 #pragma mark - Private
 
 - (void)handleUpdateWithNewMessages:(NSArray<FLEXSystemLogMessage *> *)newMessages {
-    self.title = [self.class globalsEntryTitle:FLEXGlobalsRowSystemLog];
-
-    [self.logMessages mutate:^(NSMutableArray *list) {
-        [list addObjectsFromArray:newMessages];
-    }];
-
-    // "Follow" the log as new messages stream in if we were previously near the bottom.
-    BOOL wasNearBottom = self.tableView.contentOffset.y >= self.tableView.contentSize.height - self.tableView.frame.size.height - 100.0;
-    [self reloadData];
-    if (wasNearBottom) {
-        [self scrollToLastRow];
-    }
+//    self.title = [self.class globalsEntryTitle:FLEXGlobalsRowSystemLog];
+//
+//    [self.logMessages mutate:^(NSMutableArray *list) {
+//        [list addObjectsFromArray:newMessages];
+//    }];
+//
+//    // "Follow" the log as new messages stream in if we were previously near the bottom.
+//    BOOL wasNearBottom = self.tableView.contentOffset.y >= self.tableView.contentSize.height - self.tableView.frame.size.height - 100.0;
+//    [self reloadData];
+//    if (wasNearBottom) {
+//        [self scrollToLastRow];
+//    }
 }
 
 - (void)scrollToLastRow {

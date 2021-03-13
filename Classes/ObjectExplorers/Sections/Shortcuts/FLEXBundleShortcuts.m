@@ -11,33 +11,32 @@
 #import "FLEXAlert.h"
 #import "FLEXRuntimeExporter.h"
 #import "FLEXTableListViewController.h"
-#import "FLEXFileBrowserController.h"
 
 #pragma mark -
 @implementation FLEXBundleShortcuts
 #pragma mark Overrides
 
-+ (instancetype)forObject:(NSBundle *)bundle { weakify(self)
-    return [self forObject:bundle additionalRows:@[
-        [FLEXActionShortcut
-            title:@"Browse Bundle Directory" subtitle:nil
-            viewer:^UIViewController *(NSBundle *bundle) {
-                return [FLEXFileBrowserController path:bundle.bundlePath];
-            }
-            accessoryType:^UITableViewCellAccessoryType(NSBundle *bundle) {
-                return UITableViewCellAccessoryDisclosureIndicator;
-            }
-        ],
-        [FLEXActionShortcut title:@"Browse Bundle as Database…" subtitle:nil
-            selectionHandler:^(UIViewController *host, NSBundle *bundle) { strongify(self)
-                [self promptToExportBundleAsDatabase:bundle host:host];
-            }
-            accessoryType:^UITableViewCellAccessoryType(NSBundle *bundle) {
-                return UITableViewCellAccessoryDisclosureIndicator;
-            }
-        ],
-    ]];
-}
+//+ (instancetype)forObject:(NSBundle *)bundle { weakify(self)
+//    return [self forObject:bundle additionalRows:@[
+//        [FLEXActionShortcut
+//            title:@"Browse Bundle Directory" subtitle:nil
+//            viewer:^UIViewController *(NSBundle *bundle) {
+//                return [FLEXFileBrowserController path:bundle.bundlePath];
+//            }
+//            accessoryType:^UITableViewCellAccessoryType(NSBundle *bundle) {
+//                return UITableViewCellAccessoryDisclosureIndicator;
+//            }
+//        ],
+//        [FLEXActionShortcut title:@"Browse Bundle as Database…" subtitle:nil
+//            selectionHandler:^(UIViewController *host, NSBundle *bundle) { strongify(self)
+//                [self promptToExportBundleAsDatabase:bundle host:host];
+//            }
+//            accessoryType:^UITableViewCellAccessoryType(NSBundle *bundle) {
+//                return UITableViewCellAccessoryDisclosureIndicator;
+//            }
+//        ],
+//    ]];
+//}
 
 + (void)promptToExportBundleAsDatabase:(NSBundle *)bundle host:(UIViewController *)host {
     [FLEXAlert makeAlert:^(FLEXAlert *make) {

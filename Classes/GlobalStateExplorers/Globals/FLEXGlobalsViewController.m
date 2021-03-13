@@ -8,19 +8,11 @@
 
 #import "FLEXGlobalsViewController.h"
 #import "FLEXUtility.h"
-#import "FLEXRuntimeUtility.h"
-#import "FLEXObjcRuntimeViewController.h"
-#import "FLEXKeychainViewController.h"
-#import "FLEXObjectExplorerViewController.h"
-#import "FLEXObjectExplorerFactory.h"
-#import "FLEXLiveObjectsController.h"
-#import "FLEXFileBrowserController.h"
-#import "FLEXCookiesViewController.h"
-#import "FLEXGlobalsEntry.h"
+//#import "FLEXRuntimeUtility.h"
+//#import "FLEXObjcRuntimeViewController.h"
+//#import "FLEXGlobalsEntry.h"
 #import "FLEXManager+Private.h"
-#import "FLEXSystemLogViewController.h"
 #import "FLEXNetworkMITMViewController.h"
-#import "FLEXAddressExplorerCoordinator.h"
 #import "FLEXGlobalsSection.h"
 #import "UIBarButtonItem+FLEX.h"
 
@@ -55,46 +47,8 @@
 
 + (FLEXGlobalsEntry *)globalsEntryForRow:(FLEXGlobalsRow)row {
     switch (row) {
-        case FLEXGlobalsRowAppKeychainItems:
-            return [FLEXKeychainViewController flex_concreteGlobalsEntry:row];
-        case FLEXGlobalsRowAddressInspector:
-            return [FLEXAddressExplorerCoordinator flex_concreteGlobalsEntry:row];
-        case FLEXGlobalsRowBrowseRuntime:
-            return [FLEXObjcRuntimeViewController flex_concreteGlobalsEntry:row];
-        case FLEXGlobalsRowLiveObjects:
-            return [FLEXLiveObjectsController flex_concreteGlobalsEntry:row];
-        case FLEXGlobalsRowCookies:
-            return [FLEXCookiesViewController flex_concreteGlobalsEntry:row];
-        case FLEXGlobalsRowBrowseBundle:
-        case FLEXGlobalsRowBrowseContainer:
-            return [FLEXFileBrowserController flex_concreteGlobalsEntry:row];
-        case FLEXGlobalsRowSystemLog:
-            return [FLEXSystemLogViewController flex_concreteGlobalsEntry:row];
         case FLEXGlobalsRowNetworkHistory:
             return [FLEXNetworkMITMViewController flex_concreteGlobalsEntry:row];
-        case FLEXGlobalsRowKeyWindow:
-        case FLEXGlobalsRowRootViewController:
-        case FLEXGlobalsRowProcessInfo:
-        case FLEXGlobalsRowAppDelegate:
-        case FLEXGlobalsRowUserDefaults:
-        case FLEXGlobalsRowMainBundle:
-        case FLEXGlobalsRowApplication:
-        case FLEXGlobalsRowMainScreen:
-        case FLEXGlobalsRowCurrentDevice:
-        case FLEXGlobalsRowPasteboard:
-        case FLEXGlobalsRowURLSession:
-        case FLEXGlobalsRowURLCache:
-        case FLEXGlobalsRowNotificationCenter:
-        case FLEXGlobalsRowMenuController:
-        case FLEXGlobalsRowFileManager:
-        case FLEXGlobalsRowTimeZone:
-        case FLEXGlobalsRowLocale:
-        case FLEXGlobalsRowCalendar:
-        case FLEXGlobalsRowMainRunLoop:
-        case FLEXGlobalsRowMainThread:
-        case FLEXGlobalsRowOperationQueue:
-            return [FLEXObjectExplorerFactory flex_concreteGlobalsEntry:row];
-
         default:
             @throw [NSException
                 exceptionWithName:NSInternalInconsistencyException
@@ -110,39 +64,6 @@
         NSDictionary<NSNumber *, NSArray<FLEXGlobalsEntry *> *> *rowsBySection = @{
             @(FLEXGlobalsSectionProcessAndEvents) : @[
                 [self globalsEntryForRow:FLEXGlobalsRowNetworkHistory],
-                [self globalsEntryForRow:FLEXGlobalsRowSystemLog],
-                [self globalsEntryForRow:FLEXGlobalsRowProcessInfo],
-                [self globalsEntryForRow:FLEXGlobalsRowLiveObjects],
-                [self globalsEntryForRow:FLEXGlobalsRowAddressInspector],
-                [self globalsEntryForRow:FLEXGlobalsRowBrowseRuntime],
-            ],
-            @(FLEXGlobalsSectionAppShortcuts) : @[
-                [self globalsEntryForRow:FLEXGlobalsRowBrowseBundle],
-                [self globalsEntryForRow:FLEXGlobalsRowBrowseContainer],
-                [self globalsEntryForRow:FLEXGlobalsRowMainBundle],
-                [self globalsEntryForRow:FLEXGlobalsRowUserDefaults],
-                [self globalsEntryForRow:FLEXGlobalsRowAppKeychainItems],
-                [self globalsEntryForRow:FLEXGlobalsRowApplication],
-                [self globalsEntryForRow:FLEXGlobalsRowAppDelegate],
-                [self globalsEntryForRow:FLEXGlobalsRowKeyWindow],
-                [self globalsEntryForRow:FLEXGlobalsRowRootViewController],
-                [self globalsEntryForRow:FLEXGlobalsRowCookies],
-            ],
-            @(FLEXGlobalsSectionMisc) : @[
-                [self globalsEntryForRow:FLEXGlobalsRowPasteboard],
-                [self globalsEntryForRow:FLEXGlobalsRowMainScreen],
-                [self globalsEntryForRow:FLEXGlobalsRowCurrentDevice],
-                [self globalsEntryForRow:FLEXGlobalsRowURLSession],
-                [self globalsEntryForRow:FLEXGlobalsRowURLCache],
-                [self globalsEntryForRow:FLEXGlobalsRowNotificationCenter],
-                [self globalsEntryForRow:FLEXGlobalsRowMenuController],
-                [self globalsEntryForRow:FLEXGlobalsRowFileManager],
-                [self globalsEntryForRow:FLEXGlobalsRowTimeZone],
-                [self globalsEntryForRow:FLEXGlobalsRowLocale],
-                [self globalsEntryForRow:FLEXGlobalsRowCalendar],
-                [self globalsEntryForRow:FLEXGlobalsRowMainRunLoop],
-                [self globalsEntryForRow:FLEXGlobalsRowMainThread],
-                [self globalsEntryForRow:FLEXGlobalsRowOperationQueue],
             ]
         };
 

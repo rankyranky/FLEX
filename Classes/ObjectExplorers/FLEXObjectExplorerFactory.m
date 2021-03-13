@@ -96,130 +96,16 @@ static NSMutableDictionary<id<NSCopying>, Class> *classesToRegisteredSections = 
 
 + (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row  {
     switch (row) {
-        case FLEXGlobalsRowAppDelegate:
-            return @"🎟  App Delegate";
-        case FLEXGlobalsRowKeyWindow:
-            return @"🔑  Key Window";
-        case FLEXGlobalsRowRootViewController:
-            return @"🌴  Root View Controller";
-        case FLEXGlobalsRowProcessInfo:
-            return @"🚦  NSProcessInfo.processInfo";
-        case FLEXGlobalsRowUserDefaults:
-            return @"💾  Preferences";
-        case FLEXGlobalsRowMainBundle:
-            return @"📦  NSBundle.mainBundle";
-        case FLEXGlobalsRowApplication:
-            return @"🚀  UIApplication.sharedApplication";
-        case FLEXGlobalsRowMainScreen:
-            return @"💻  UIScreen.mainScreen";
-        case FLEXGlobalsRowCurrentDevice:
-            return @"📱  UIDevice.currentDevice";
-        case FLEXGlobalsRowPasteboard:
-            return @"📋  UIPasteboard.generalPasteboard";
-        case FLEXGlobalsRowURLSession:
-            return @"📡  NSURLSession.sharedSession";
-        case FLEXGlobalsRowURLCache:
-            return @"⏳  NSURLCache.sharedURLCache";
-        case FLEXGlobalsRowNotificationCenter:
-            return @"🔔  NSNotificationCenter.defaultCenter";
-        case FLEXGlobalsRowMenuController:
-            return @"📎  UIMenuController.sharedMenuController";
-        case FLEXGlobalsRowFileManager:
-            return @"🗄  NSFileManager.defaultManager";
-        case FLEXGlobalsRowTimeZone:
-            return @"🌎  NSTimeZone.systemTimeZone";
-        case FLEXGlobalsRowLocale:
-            return @"🗣  NSLocale.currentLocale";
-        case FLEXGlobalsRowCalendar:
-            return @"📅  NSCalendar.currentCalendar";
-        case FLEXGlobalsRowMainRunLoop:
-            return @"🏃🏻‍♂️  NSRunLoop.mainRunLoop";
-        case FLEXGlobalsRowMainThread:
-            return @"🧵  NSThread.mainThread";
-        case FLEXGlobalsRowOperationQueue:
-            return @"📚  NSOperationQueue.mainQueue";
         default: return nil;
     }
 }
 
 + (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row  {
-    switch (row) {
-        case FLEXGlobalsRowAppDelegate: {
-            id<UIApplicationDelegate> appDelegate = UIApplication.sharedApplication.delegate;
-            return [self explorerViewControllerForObject:appDelegate];
-        }
-        case FLEXGlobalsRowProcessInfo:
-            return [self explorerViewControllerForObject:NSProcessInfo.processInfo];
-        case FLEXGlobalsRowUserDefaults:
-            return [self explorerViewControllerForObject:NSUserDefaults.standardUserDefaults];
-        case FLEXGlobalsRowMainBundle:
-            return [self explorerViewControllerForObject:NSBundle.mainBundle];
-        case FLEXGlobalsRowApplication:
-            return [self explorerViewControllerForObject:UIApplication.sharedApplication];
-        case FLEXGlobalsRowMainScreen:
-            return [self explorerViewControllerForObject:UIScreen.mainScreen];
-        case FLEXGlobalsRowCurrentDevice:
-            return [self explorerViewControllerForObject:UIDevice.currentDevice];
-        case FLEXGlobalsRowPasteboard:
-            return [self explorerViewControllerForObject:UIPasteboard.generalPasteboard];
-            case FLEXGlobalsRowURLSession:
-            return [self explorerViewControllerForObject:NSURLSession.sharedSession];
-        case FLEXGlobalsRowURLCache:
-            return [self explorerViewControllerForObject:NSURLCache.sharedURLCache];
-        case FLEXGlobalsRowNotificationCenter:
-            return [self explorerViewControllerForObject:NSNotificationCenter.defaultCenter];
-        case FLEXGlobalsRowMenuController:
-            return [self explorerViewControllerForObject:UIMenuController.sharedMenuController];
-        case FLEXGlobalsRowFileManager:
-            return [self explorerViewControllerForObject:NSFileManager.defaultManager];
-        case FLEXGlobalsRowTimeZone:
-            return [self explorerViewControllerForObject:NSTimeZone.systemTimeZone];
-        case FLEXGlobalsRowLocale:
-            return [self explorerViewControllerForObject:NSLocale.currentLocale];
-        case FLEXGlobalsRowCalendar:
-            return [self explorerViewControllerForObject:NSCalendar.currentCalendar];
-        case FLEXGlobalsRowMainRunLoop:
-            return [self explorerViewControllerForObject:NSRunLoop.mainRunLoop];
-        case FLEXGlobalsRowMainThread:
-            return [self explorerViewControllerForObject:NSThread.mainThread];
-        case FLEXGlobalsRowOperationQueue:
-            return [self explorerViewControllerForObject:NSOperationQueue.mainQueue];
-
-        case FLEXGlobalsRowKeyWindow:
-            return [FLEXObjectExplorerFactory
-                explorerViewControllerForObject:FLEXUtility.appKeyWindow
-            ];
-        case FLEXGlobalsRowRootViewController: {
-            id<UIApplicationDelegate> delegate = UIApplication.sharedApplication.delegate;
-            if ([delegate respondsToSelector:@selector(window)]) {
-                return [self explorerViewControllerForObject:delegate.window.rootViewController];
-            }
-
-            return nil;
-        }
-        default: return nil;
-    }
+    return nil;
 }
 
 + (FLEXGlobalsEntryRowAction)globalsEntryRowAction:(FLEXGlobalsRow)row {
-    switch (row) {
-        case FLEXGlobalsRowRootViewController: {
-            // Check if the app delegate responds to -window. If not, present an alert
-            return ^(UITableViewController *host) {
-                id<UIApplicationDelegate> delegate = UIApplication.sharedApplication.delegate;
-                if ([delegate respondsToSelector:@selector(window)]) {
-                    UIViewController *explorer = [self explorerViewControllerForObject:
-                        delegate.window.rootViewController
-                    ];
-                    [host.navigationController pushViewController:explorer animated:YES];
-                } else {
-                    NSString *msg = @"The app delegate doesn't respond to -window";
-                    [FLEXAlert showAlert:@":(" message:msg from:host];
-                }
-            };
-        }
-        default: return nil;
-    }
+    return nil;
 }
 
 @end

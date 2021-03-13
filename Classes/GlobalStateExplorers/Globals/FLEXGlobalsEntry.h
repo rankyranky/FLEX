@@ -11,37 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, FLEXGlobalsRow) {
-    FLEXGlobalsRowProcessInfo,
     FLEXGlobalsRowNetworkHistory,
-    FLEXGlobalsRowSystemLog,
-    FLEXGlobalsRowLiveObjects,
-    FLEXGlobalsRowAddressInspector,
-    FLEXGlobalsRowCookies,
-    FLEXGlobalsRowBrowseRuntime,
-    FLEXGlobalsRowAppKeychainItems,
-    FLEXGlobalsRowAppDelegate,
-    FLEXGlobalsRowRootViewController,
-    FLEXGlobalsRowUserDefaults,
-    FLEXGlobalsRowMainBundle,
-    FLEXGlobalsRowBrowseBundle,
-    FLEXGlobalsRowBrowseContainer,
-    FLEXGlobalsRowApplication,
-    FLEXGlobalsRowKeyWindow,
-    FLEXGlobalsRowMainScreen,
-    FLEXGlobalsRowCurrentDevice,
-    FLEXGlobalsRowPasteboard,
-    FLEXGlobalsRowURLSession,
-    FLEXGlobalsRowURLCache,
-    FLEXGlobalsRowNotificationCenter,
-    FLEXGlobalsRowMenuController,
-    FLEXGlobalsRowFileManager,
-    FLEXGlobalsRowTimeZone,
-    FLEXGlobalsRowLocale,
-    FLEXGlobalsRowCalendar,
-    FLEXGlobalsRowMainRunLoop,
-    FLEXGlobalsRowMainThread,
-    FLEXGlobalsRowOperationQueue,
-    FLEXGlobalsRowCount
 };
 
 typedef NSString * _Nonnull (^FLEXGlobalsEntryNameFuture)(void);
