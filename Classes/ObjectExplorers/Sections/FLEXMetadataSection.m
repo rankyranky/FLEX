@@ -10,8 +10,6 @@
 #import "FLEXTableView.h"
 #import "FLEXTableViewCell.h"
 #import "FLEXObjectExplorerFactory.h"
-#import "FLEXFieldEditorViewController.h"
-#import "FLEXMethodCallingViewController.h"
 #import "FLEXIvar.h"
 #import "NSArray+FLEX.h"
 #import "FLEXRuntime+UIKitHelpers.h"

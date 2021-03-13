@@ -11,7 +11,7 @@
 #import "FLEXExplorerViewController.h"
 #import "FLEXWindow.h"
 #import "FLEXObjectExplorerViewController.h"
-#import "FLEXFileBrowserController.h"
+#import "FLEXGlobalsSection.h"
 
 @interface FLEXManager () <FLEXWindowEventDelegate, FLEXExplorerViewControllerDelegate>
 

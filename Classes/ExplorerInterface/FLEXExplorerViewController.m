@@ -381,10 +381,6 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 - (void)setupToolbarActions {
     FLEXExplorerToolbar *toolbar = self.explorerToolbar;
     NSDictionary<NSString *, FLEXExplorerToolbarItem *> *actionsToItems = @{
-        NSStringFromSelector(@selector(selectButtonTapped:)):        toolbar.selectItem,
-        NSStringFromSelector(@selector(hierarchyButtonTapped:)):     toolbar.hierarchyItem,
-        NSStringFromSelector(@selector(recentButtonTapped:)):        toolbar.recentItem,
-        NSStringFromSelector(@selector(moveButtonTapped:)):          toolbar.moveItem,
         NSStringFromSelector(@selector(globalsButtonTapped:)):       toolbar.globalsItem,
         NSStringFromSelector(@selector(closeButtonTapped:)):         toolbar.closeItem,
     };
@@ -426,17 +422,6 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 }
 
 - (void)updateButtonStates {
-    FLEXExplorerToolbar *toolbar = self.explorerToolbar;
-    
-    toolbar.selectItem.selected = self.currentMode == FLEXExplorerModeSelect;
-    
-    // Move only enabled when an object is selected.
-    BOOL hasSelectedObject = self.selectedView != nil;
-    toolbar.moveItem.enabled = hasSelectedObject;
-    toolbar.moveItem.selected = self.currentMode == FLEXExplorerModeMove;
-    
-    // Recent only enabled when we have a last active tab
-    toolbar.recentItem.enabled = FLEXTabList.sharedList.activeTab != nil;
 }
 
 
@@ -475,16 +460,6 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     // Long press gesture to present tabs manager
     [toolbar.globalsItem addGestureRecognizer:[[UILongPressGestureRecognizer alloc]
         initWithTarget:self action:@selector(handleToolbarShowTabsGesture:)
-    ]];
-    
-    // Long press gesture to present window manager
-    [toolbar.selectItem addGestureRecognizer:[[UILongPressGestureRecognizer alloc]
-        initWithTarget:self action:@selector(handleToolbarWindowManagerGesture:)
-    ]];
-    
-    // Long press gesture to present view controllers at tap
-    [toolbar.hierarchyItem addGestureRecognizer:[[UILongPressGestureRecognizer alloc]
-        initWithTarget:self action:@selector(handleToolbarShowViewControllersGesture:)
     ]];
 }
 

@@ -20,19 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// globalsItem, hierarchyItem, selectItem, moveItem, closeItem
 @property (nonatomic, copy) NSArray<FLEXExplorerToolbarItem *> *toolbarItems;
 
-/// Toolbar item for selecting views.
-@property (nonatomic, readonly) FLEXExplorerToolbarItem *selectItem;
-
-/// Toolbar item for presenting a list with the view hierarchy.
-@property (nonatomic, readonly) FLEXExplorerToolbarItem *hierarchyItem;
-
-/// Toolbar item for moving views.
-/// Its \c sibling is the \c lastTabItem
-@property (nonatomic, readonly) FLEXExplorerToolbarItem *moveItem;
-
-/// Toolbar item for presenting the currently active tab.
-@property (nonatomic, readonly) FLEXExplorerToolbarItem *recentItem;
-
 /// Toolbar item for presenting a screen with various tools for inspecting the app.
 @property (nonatomic, readonly) FLEXExplorerToolbarItem *globalsItem;
 

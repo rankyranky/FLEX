@@ -7,7 +7,6 @@
 //
 
 #import "FLEXDefaultsContentSection.h"
-#import "FLEXDefaultEditorViewController.h"
 #import "FLEXUtility.h"
 
 @interface FLEXDefaultsContentSection ()
@@ -46,18 +45,7 @@
 
 - (void (^)(__kindof UIViewController *))didPressInfoButtonAction:(NSInteger)row {
     return ^(UIViewController *host) {
-        if ([FLEXDefaultEditorViewController canEditDefaultWithValue:[self objectForRow:row]]) {
-            // We use titleForRow: to get the key because self.keys is not
-            // necessarily in the same order as the keys being displayed
-            FLEXVariableEditorViewController *controller = [FLEXDefaultEditorViewController
-                target:self.defaults key:[self titleForRow:row] commitHandler:^{
-                    [self reloadData:YES];
-                }
-            ];
-            [host.navigationController pushViewController:controller animated:YES];
-        } else {
-            [FLEXAlert showAlert:@"Oh No…" message:@"We can't edit this entry :(" from:host];
-        }
+        [FLEXAlert showAlert:@"Oh No…" message:@"We can't edit this entry :(" from:host];
     };
 }
 

@@ -12,7 +12,6 @@
 #import "FLEXSubtitleTableViewCell.h"
 #import "FLEXTableView.h"
 #import "FLEXObjectExplorerFactory.h"
-#import "FLEXDefaultEditorViewController.h"
 
 typedef NS_ENUM(NSUInteger, FLEXCollectionType) {
     FLEXUnsupportedCollection,

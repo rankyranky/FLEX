@@ -12,8 +12,6 @@
 #import "UIBarButtonItem+FLEX.h"
 #import "FLEXMultilineTableViewCell.h"
 #import "FLEXObjectExplorerFactory.h"
-#import "FLEXFieldEditorViewController.h"
-#import "FLEXMethodCallingViewController.h"
 #import "FLEXObjectListViewController.h"
 #import "FLEXTabsViewController.h"
 #import "FLEXBookmarkManager.h"

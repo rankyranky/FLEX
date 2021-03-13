@@ -9,10 +9,7 @@
 #import "FLEXRuntime+UIKitHelpers.h"
 #import "FLEXRuntimeUtility.h"
 #import "FLEXPropertyAttributes.h"
-#import "FLEXArgumentInputViewFactory.h"
 #import "FLEXObjectExplorerFactory.h"
-#import "FLEXFieldEditorViewController.h"
-#import "FLEXMethodCallingViewController.h"
 #import "FLEXObjectListViewController.h"
 #import "FLEXTableView.h"
 #import "FLEXUtility.h"
@@ -50,15 +47,6 @@ FLEXObjectExplorerDefaultsImpl
     }
 }
 
-- (BOOL)isEditable {
-    if (self.attributes.isReadOnly) {
-        return self.likelySetterExists;
-    }
-    
-    const FLEXTypeEncoding *typeEncoding = self.attributes.typeEncoding.UTF8String;
-    return [FLEXArgumentInputViewFactory canEditFieldWithTypeEncoding:typeEncoding currentValue:nil];
-}
-
 - (BOOL)isCallable {
     return YES;
 }
@@ -90,13 +78,6 @@ FLEXObjectExplorerDefaultsImpl
 - (UIViewController *)viewerWithTarget:(id)object {
     id value = [self currentValueWithTarget:object];
     return [FLEXObjectExplorerFactory explorerViewControllerForObject:value];
-}
-
-- (UIViewController *)editorWithTarget:(id)object section:(FLEXTableViewSection *)section {
-    id target = [self appropriateTargetForPropertyType:object];
-    return [FLEXFieldEditorViewController target:target property:self commitHandler:^{
-        [section reloadData:YES];
-    }];
 }
 
 - (UITableViewCellAccessoryType)suggestedAccessoryTypeWithTarget:(id)object {
@@ -217,8 +198,7 @@ FLEXObjectExplorerDefaultsImpl
 FLEXObjectExplorerDefaultsImpl
 
 - (BOOL)isEditable {
-    const FLEXTypeEncoding *typeEncoding = self.typeEncoding.UTF8String;
-    return [FLEXArgumentInputViewFactory canEditFieldWithTypeEncoding:typeEncoding currentValue:nil];
+    return NO;
 }
 
 - (BOOL)isCallable {
@@ -249,13 +229,6 @@ FLEXObjectExplorerDefaultsImpl
     NSAssert(!object_isClass(object), @"Unreachable state: viewing ivar on class object");
     id value = [self currentValueWithTarget:object];
     return [FLEXObjectExplorerFactory explorerViewControllerForObject:value];
-}
-
-- (UIViewController *)editorWithTarget:(id)object section:(FLEXTableViewSection *)section {
-    NSAssert(!object_isClass(object), @"Unreachable state: editing ivar on class object");
-    return [FLEXFieldEditorViewController target:object ivar:self commitHandler:^{
-        [section reloadData:YES];
-    }];
 }
 
 - (UITableViewCellAccessoryType)suggestedAccessoryTypeWithTarget:(id)object {
@@ -412,8 +385,7 @@ FLEXObjectExplorerDefaultsImpl
 }
 
 - (UIViewController *)viewerWithTarget:(id)object {
-    object = self.isInstanceMethod ? object : (object_isClass(object) ? object : [object class]);
-    return [FLEXMethodCallingViewController target:object method:self];
+    return nil;
 }
 
 - (UITableViewCellAccessoryType)suggestedAccessoryTypeWithTarget:(id)object {
